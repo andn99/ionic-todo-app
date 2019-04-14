@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-selft-center size="12" size-md="8" size-lg="6">
+          <div padding>
+            <ion-item>
+              <ion-input #firstName="ngModel" name="firstName" type="text" placeholder="Firstname" required ngModel></ion-input>
+            </ion-item>
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+              <p class="error" *ngIf="firstName.errors.required">Firtname is required!</p>
+            </div>
+
+            <ion-item>
+              <ion-input #lastName="ngModel" name="lastName" type="text" placeholder="Lastname" required ngModel></ion-input>
+            </ion-item>
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+              <p class="error" *ngIf="lastName.errors.required">Firtname is required!</p>
+            </div>
+
+            <ion-item>
+              <ion-input #email="ngModel" name="email" type="email" placeholder="Email" required ngModel email></ion-input>
+            </ion-item>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <p class="error" *ngIf="email.errors.required">Email is required!</p>
+              <p class="error" *ngIf="email.errors.email">Email is invalid!</p>
+            </div>
+
+            <ion-item>
+              <ion-input #password="ngModel" name="password" type="password" placeholder="Password" required ngModel></ion-input>
+            </ion-item>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+              <p class="error" *ngIf="password.errors.required">Password is required!</p>
+            </div>
+
+            <ion-item>
+              <ion-input #confirmPassword="ngModel" name="confirmPassword" type="password" placeholder="Confirm password" required ngModel pattern="{{password.value}}"></ion-input>
+            </ion-item>
+            <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+              <p class="error" *ngIf="confirmPassword.errors.required">Password is required!</p>
+              <p class="error" *ngIf="confirmPassword.errors.pattern">Confirm password does not match!</p>
+            </div>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="registerForm.invalid" expand="block" color="primary" type="submit">Register</ion-button>
+          </div>
+
+          <div pading class="register-text">
+            Already have an account? <a routerLink="/login">Login</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary" text-center>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-selft-center size="12" size-md="8" size-lg="6">
+          <div padding>
+            <ion-item>
+              <ion-input #email="ngModel" name="email" type="email" placeholder="Email" ngModel required email></ion-input>
+            </ion-item>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <p class="error" *ngIf="email.errors.required">Email is required!</p>
+              <p class="error" *ngIf="email.errors.email">Email is invalid!</p>
+            </div>
+
+            <ion-item>
+              <ion-input #password="ngModel" name="password" type="password" placeholder="Password" ngModel required></ion-input>
+            </ion-item>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+              <p class="error" *ngIf="password.errors.required">Password is required!</p>
+            </div>
+
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="loginForm.invalid" expand="block" color="primary" type="submit">Login</ion-button>
+          </div>
+
+          <div pading class="register-text">
+            Not having an account? <a routerLink="/register">Register</a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
